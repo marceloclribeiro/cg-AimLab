@@ -1,0 +1,15 @@
+h1 {
+  color: white;
+  /* margin-top: 50%; */
+}
+
+.infos {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  /* height: 30vh; */
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
+}

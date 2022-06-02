@@ -1,22 +1,28 @@
 import Target from "../Target";
 import { useEffect, useState } from "react";
 
-function RenderTargets() {
-  const [targets, setTargets] = useState([{ position: [0, 0, 0] }]);
-  const [score, setScore] = useState(0);
-
+function RenderTargets({ controller, score }) {
   const random = () => (Math.random() - 0.5) * 10;
-  useEffect(() => {
-    setInterval(() => {
-      setTargets([{ position: [random(), random(), random()] }]);
-      setTimeout(() => {
-        setTargets([]);
-      }, 2000);
-    }, 3000);
-  }, []);
+  const [targets, setTargets] = useState([]);
 
-  function handleRemove(id) {
+  useEffect(() => {
+    // setInterval(() => {
+    setTimeout(() => {
+      setTargets([
+        { position: [random(), random(), -10 - Math.abs(random())] },
+      ]);
+      // setTargets([]);
+      console.log("setTimeout");
+    }, 2000);
+    clearTimeout();
+
+    // console.log("setInterval");
+    // }, 3000);
+  }, [targets]);
+
+  function handleRemove() {
     setTargets([]);
+    console.log("handleRemove");
   }
   return (
     <>
@@ -25,9 +31,8 @@ function RenderTargets() {
           key={index}
           position={target.position}
           clickFunction={() => {
-            handleRemove(index);
-            setScore((prev) => prev + 1);
-            console.log(score);
+            handleRemove();
+            controller((prev) => prev + 1);
           }}
         />
       ))}
@@ -35,4 +40,4 @@ function RenderTargets() {
   );
 }
 
-export default RenderTargets;
+export { RenderTargets };
