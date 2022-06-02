@@ -29,7 +29,7 @@ function Target({ position: initialPosition, clickFunction }) {
         movement = [0, 0.05, 0];
         break;
       case 4:
-        movement = [(0, 0, -0.05)];
+        movement = [0, 0, -0.05];
         break;
       case 5:
         movement = [0, 0, 0.05];
