@@ -6,19 +6,16 @@ function RenderTargets({ controller, score }) {
   const [targets, setTargets] = useState([]);
 
   useEffect(() => {
-    // setInterval(() => {
-    setTimeout(() => {
+    setInterval(() => {
       setTargets([
         { position: [random(), random(), -10 - Math.abs(random())] },
       ]);
-      // setTargets([]);
-      console.log("setTimeout");
-    }, 2000);
-    clearTimeout();
-
-    // console.log("setInterval");
-    // }, 3000);
-  }, [targets]);
+      setTimeout(() => {
+        setTargets([]);
+        console.log("setTimeout");
+      }, 2000);
+    }, 3000);
+  }, []);
 
   function handleRemove() {
     setTargets([]);
