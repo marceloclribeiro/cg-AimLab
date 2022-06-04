@@ -1,25 +1,29 @@
-import Target from "../Target";
-import { useEffect, useState } from "react";
+import Target from '../Target'
+import { useEffect, useState } from 'react'
 
-function RenderTargets({ controller, score }) {
-  const random = () => (Math.random() - 0.5) * 10;
-  const [targets, setTargets] = useState([]);
+function RenderTargets({ score, setScore, start, setStart }) {
+  const random = () => (Math.random() - 0.5) * 10
+  const [targets, setTargets] = useState([])
+  const [myInterval, setMyInterval] = useState()
 
+  //comentados são as linhas pra gerar automaticamente
   useEffect(() => {
-    setInterval(() => {
-      setTargets([
-        { position: [random(), random(), -10 - Math.abs(random())] },
-      ]);
-      setTimeout(() => {
-        setTargets([]);
-        console.log("setTimeout");
-      }, 2000);
-    }, 3000);
-  }, []);
+    if (start) {
+      // setMyInterval(
+      // setInterval(() => {
+      setTargets([{ position: [random(), random(), -10 - Math.abs(random())] }])
+      // setTimeout(() => {
+      // setTargets([])
+      // }, 2000)
+      // }, 3000)
+      // )
+    } else {
+      // clearInterval(myInterval)
+    }
+  }, [start, score])
 
   function handleRemove() {
-    setTargets([]);
-    console.log("handleRemove");
+    setTargets([])
   }
   return (
     <>
@@ -28,13 +32,15 @@ function RenderTargets({ controller, score }) {
           key={index}
           position={target.position}
           clickFunction={() => {
-            handleRemove();
-            controller((prev) => prev + 1);
+            handleRemove()
+            //comentado é como definir um numero maximo de score
+            // if (score == 4) setStart((prev) => !prev)
+            setScore((prev) => prev + 1)
           }}
         />
       ))}
     </>
-  );
+  )
 }
 
-export { RenderTargets };
+export { RenderTargets }
