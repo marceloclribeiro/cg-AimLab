@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import { useThree } from '@react-three/fiber'
 import { useEffect } from 'react'
 
-function Audio({ start, clicks }) {
+function Audio({ start, clicks = false, path }) {
   const camera = useThree((state) => state.camera)
 
   const listener = new THREE.AudioListener()
@@ -14,7 +14,7 @@ function Audio({ start, clicks }) {
 
   useEffect(() => {
     if (start) {
-      audioLoader.load('sounds/gun3.mp3', function (buffer) {
+      audioLoader.load(path, function (buffer) {
         sound.setBuffer(buffer)
         sound.play()
       })

@@ -9,34 +9,59 @@ function App() {
   const [score, setScore] = useState(0)
   const [clicks, setClicks] = useState(0)
   const [start, setStart] = useState(false)
+  const [sense, setSense] = useState(0.5)
+  const [gamemode, setGamemode] = useState('steady')
 
   const camera = useRef()
   return (
     <>
-      <div className="infos">
-        <h1>Clicks:{clicks}</h1>
-        <button
-          onClick={() => {
-            setStart((prev) => !prev)
-            // camera.current.lock()
-          }}
-        >
-          Start
-        </button>
-      </div>
+      {start ? (
+        <div className="infos">
+          <h1>Clicks:{clicks}</h1>
+          <h1>Precision:{Math.round((score / clicks) * 100)}%</h1>
+          <button
+            onClick={() => {
+              setStart(false)
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      ) : (
+        <div className="menu">
+          <h1>Aim Lab</h1>
+          <button
+            onClick={() => {
+              setStart(true)
+            }}
+          >
+            Start
+          </button>
+          <input
+            type="range"
+            min="0"
+            max="1"
+            value={sense}
+            step="0.05"
+            onChange={(event) => setSense(event.target.value)}
+          />
+          <select value={gamemode} onChange={(event) => setGamemode(event.target.value)}>
+            <option value="steady">Steady</option>
+            <option value="horizontal">Horizontal</option>
+            <option value="random">Random</option>
+          </select>
+          <p>{sense}</p>
+        </div>
+      )}
       {start && <Crosshair />}
       <Canvas onClick={() => start && setClicks((prev) => prev + 1)}>
-        <Suspense>
-          <Audio clicks={clicks} start={start} />
-        </Suspense>
-        {start ? <CustomPointerLockControls pointerSpeed={0.5} ref={camera} /> : <PerspectiveCamera />}
+        <Suspense>{clicks && <Audio path={'sounds/pew.mp3'} clicks={clicks} start={start} />}</Suspense>
+        {start ? <CustomPointerLockControls pointerSpeed={sense} ref={camera} /> : <PerspectiveCamera />}
 
         <Plane />
-        <RenderTargets score={score} setScore={setScore} start={start} setStart={setStart} />
+        <RenderTargets score={score} setScore={setScore} start={start} setStart={setStart} gamemode={gamemode} />
         <ambientLight intensity={0.5} />
-        <directionalLight position={[3, 0, 3]} intensity={0.5} castShadow />
-        <pointLight position={[0, 0, -3]} intensity={0.6} castShadow />
-        <pointLight position={[0, 0, 4]} intensity={0.6} castShadow />
+        <pointLight position={[0, 30, 0]} intensity={1} castShadow />
       </Canvas>
     </>
   )
