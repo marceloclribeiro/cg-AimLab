@@ -1,7 +1,9 @@
 h1 {
   color: white;
 }
-
+h3 {
+  color: white;
+}
 .infos {
   z-index: 14;
   position: absolute;
@@ -21,15 +23,16 @@ h1 {
   height: 100vh;
   flex-direction: column;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  text-align: center;
 }
 .menu h1 {
   margin-bottom: 20px;
   font-size: 3em;
 }
 .menu button {
-  width: 10%;
+  width: 100%;
   height: 40px;
   border-radius: 10px;
   margin-bottom: 10px;
@@ -38,13 +41,13 @@ h1 {
   padding: 4px;
   border-radius: 10px;
   color: white;
-}
-.menu input {
-  width: 10%;
   margin-bottom: 10px;
 }
+.menu input {
+  width: 100%;
+}
 .menu select {
-  width: 10%;
+  width: 100%;
   height: 30px;
   border-radius: 10px;
 }

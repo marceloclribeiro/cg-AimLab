@@ -20,7 +20,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}
@@ -31,7 +30,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}
@@ -42,7 +40,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}
@@ -53,7 +50,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}
@@ -64,7 +60,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}
@@ -75,7 +70,6 @@ function Plane() {
         <meshPhongMaterial
           color={'dimgray'}
           receiveShadow
-          // {...props}
           map={props.map}
           map-repeat={[10, 10]}
           displacementScale={0}

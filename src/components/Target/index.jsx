@@ -1,18 +1,9 @@
-import { useTexture } from '@react-three/drei'
 import { useEffect, useState } from 'react'
 
 function Target({ position: initialPosition, clickFunction, move, movements }) {
-  const props = useTexture({
-    map: 'textures/Tiles107_1K_Color.jpg',
-    displacementMap: 'textures/Tiles107_1K_Displacement.jpg',
-    normalMap: 'textures/Tiles107_1K_NormalGL.jpg',
-    roughnessMap: 'textures/Tiles107_1K_Roughness.jpg',
-    aoMap: 'textures/Tiles107_1K_AmbientOcclusion.jpg',
-  })
-
   const [position, setPosition] = useState(initialPosition)
 
-  const random = () => Math.round(Math.random() * movements) //1 movimentas só X, 5 movimenta todos eixos
+  const random = () => Math.round(Math.random() * movements) //1 movimenta só X, 5 movimenta todos eixos
   var movement = []
 
   useEffect(() => {
@@ -47,12 +38,7 @@ function Target({ position: initialPosition, clickFunction, move, movements }) {
   return (
     <mesh position={position} onClick={clickFunction}>
       <sphereBufferGeometry attach="geometry" args={[0.5, 100, 100]} />
-      <meshStandardMaterial
-        attach="material"
-        // {...props}
-        displacementScale={0}
-        color="blue"
-      />
+      <meshStandardMaterial attach="material" color="blue" />
     </mesh>
   )
 }
